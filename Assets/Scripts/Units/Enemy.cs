@@ -10,6 +10,8 @@ public class Enemy
     public int maxStress;
     public List<LearnableMove> Moves {get;set;}
 
+    int damage;
+
     public Enemy(UnitBase pBase){
         Base = pBase;
         HP = MaxHp;
@@ -26,8 +28,11 @@ public class Enemy
         get {return (Base.MaxHp );}
     }
 
-    public bool TakeDamage(LearnableMove move){
-        HP-=move.Base.Damage;
+    public bool TakeDamage(LearnableMove move,PlayerUnit player){ 
+        damage =  (move.Base.Damage-player.Player.Stress/10);
+        if(damage >=0)
+            HP-= damage;
+    
         if(HP<=0){
             HP = 0;
             return true;

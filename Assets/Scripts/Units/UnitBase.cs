@@ -10,6 +10,7 @@ public class UnitBase : ScriptableObject
 
     //Base stats
     [SerializeField] int maxHp;
+    [SerializeField] int maxStress;
     [SerializeField] int attack;
     [SerializeField] int defense;
     [SerializeField] LearnableMove oneMove;
@@ -23,6 +24,9 @@ public class UnitBase : ScriptableObject
     }
     public int MaxHp{
         get {return maxHp;}
+    }
+    public int MaxStress{
+        get {return maxStress;}
     }
     public int Attack{
         get {return attack;}

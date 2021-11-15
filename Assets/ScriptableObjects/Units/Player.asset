@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   name: Player
-  sprite: {fileID: 7152930139536384079, guid: e07e58713a55ee2498aa38dc910d33d3, type: 3}
+  sprite: {fileID: -3303779423006393323, guid: e07e58713a55ee2498aa38dc910d33d3, type: 3}
   maxHp: 100
+  maxStress: 100
   attack: 100
   defense: 0
   oneMove:
@@ -22,4 +23,10 @@ MonoBehaviour:
     level: 0
   moves:
   - moveBase: {fileID: 11400000, guid: f61cd4e6f4b5eb740a81cc8d1abd49e3, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 90f22f9066d572d4cb27c88e112986ea, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: b3d9d13eac7a43844b26c3c14f8819b9, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 257081e16fbd0a84387a2e2d3c03a1d0, type: 2}
     level: 1

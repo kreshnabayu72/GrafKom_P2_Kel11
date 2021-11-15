@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PR EZ
   m_EditorClassIdentifier: 
   name: PR EZ
-  sprite: {fileID: -1038918931832879880, guid: e07e58713a55ee2498aa38dc910d33d3, type: 3}
+  sprite: {fileID: 21300000, guid: e1d3cd3e8423cd547b78f5b52a154372, type: 3}
   maxHp: 30
   attack: 5
   defense: 0
