@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeaef6656cfeedc41a6c5b45f3fac4e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _base: {fileID: 11400000, guid: 88222d4d2c14bdf44bb7ef272ae29465, type: 2}
+  _base: {fileID: 11400000, guid: 66972d4ebc2ae8443991df7d37abd684, type: 2}
   enemySprite: {fileID: 1620177686}
   combatEnemy: {fileID: 1377428037640318593}
 --- !u!4 &711111496
@@ -2550,7 +2550,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 4
+  m_Text: '-'
 --- !u!222 &1324501281
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4850,7 +4850,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: '-'
 --- !u!222 &1627722935
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5321,7 +5321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: '-'
 --- !u!222 &1941939603
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5400,7 +5400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: '-'
 --- !u!222 &2071182348
 CanvasRenderer:
   m_ObjectHideFlags: 0
