@@ -31,4 +31,17 @@ public class GameController : MonoBehaviour
             CombatCamera.enabled = false;
         }
     }
+
+    public void DisableExplore(){
+        playerWalk.enabled = false;
+    }
+    public void EnableExplore(){
+        playerWalk.enabled = true;
+    }
+    public void DisableCombat(){
+        combat.enabled = false;
+    }
+    public void EnableCombat(){
+        combat.enabled = true;
+    }
 }

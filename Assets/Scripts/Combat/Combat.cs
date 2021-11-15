@@ -23,11 +23,6 @@ public class Combat : MonoBehaviour
 	[SerializeField] GameController gameController;
 	[SerializeField] GameObject exploreEnemy;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
 	public void StartBattle(){
 		gameStatusUI.SetActive(false);
@@ -62,13 +57,14 @@ public class Combat : MonoBehaviour
 		gameStatusUI.SetActive(true);
 		exploreEnemy.SetActive(false);
 		gameController.ChangeState();
+		gameController.EnableExplore();
     }
 
-    IEnumerator PlayerAttack()
+    IEnumerator PlayerMove0()
 	{		
 		gameStatusUI.SetActive(true);
 		gameStatusText.text = playerUnit.Player.Base.Name +" uses "+playerUnit.Player.Moves[0].Name;
-		enemyUnit.Enemy.TakeDamage(playerUnit.Player.Moves[0]);
+		enemyUnit.Enemy.TakeDamage(playerUnit.Player.Moves[0],playerUnit);
 		enemyHUD.UpdateHP();
 
 		yield return new WaitForSeconds(1f);
@@ -84,6 +80,54 @@ public class Combat : MonoBehaviour
 			StartCoroutine(EnemyTurn());
 		}
 	}
+
+	IEnumerator PlayerMove1(){
+		gameStatusUI.SetActive(true);
+		gameStatusText.text = playerUnit.Player.Base.Name +" uses "+playerUnit.Player.Moves[1].Name;
+
+		playerUnit.Player.Heal(playerUnit.Player.Moves[1]);
+		enemyUnit.Enemy.TakeDamage(playerUnit.Player.Moves[1],playerUnit);
+
+		enemyHUD.UpdateHP();
+		playerHUD.UpdateHP();
+
+		yield return new WaitForSeconds(1f);
+		gameStatusUI.SetActive(false);
+
+		if(enemyUnit.Enemy.HP <= 0)
+		{
+			EndBattle();
+			Debug.Log("ENEMY DED");
+		} else
+		{
+			GameState = State.ENEMY_TURN;
+			StartCoroutine(EnemyTurn());
+		}
+	}
+	IEnumerator PlayerMove2(){
+		gameStatusUI.SetActive(true);
+		gameStatusText.text = playerUnit.Player.Base.Name +" uses "+playerUnit.Player.Moves[2].Name;
+
+		playerUnit.Player.Heal(playerUnit.Player.Moves[2]);
+
+		enemyHUD.UpdateHP();
+		playerHUD.UpdateHP();
+
+		yield return new WaitForSeconds(1f);
+		gameStatusUI.SetActive(false);
+
+		if(enemyUnit.Enemy.HP <= 0)
+		{
+			EndBattle();
+			Debug.Log("ENEMY DED");
+		} else
+		{
+			GameState = State.ENEMY_TURN;
+			StartCoroutine(EnemyTurn());
+		}
+	}
+	
+
 
     IEnumerator EnemyTurn()
 	{
@@ -122,12 +166,33 @@ public class Combat : MonoBehaviour
 		gameStatusText.text = "Stress Attack";
 	}
 
-    public void AttackButtonHandler()
+    public void AttackButtonHandler0()
 	{
 		if (GameState != State.PLAYER_TURN)
 			return;
 
-		StartCoroutine(PlayerAttack());
+		StartCoroutine(PlayerMove0());
+	}
+    public void AttackButtonHandler1()
+	{
+		if (GameState != State.PLAYER_TURN)
+			return;
+
+		StartCoroutine(PlayerMove1());
+	}
+    public void AttackButtonHandler2()
+	{
+		if (GameState != State.PLAYER_TURN)
+			return;
+
+		StartCoroutine(PlayerMove2());
+	}
+    public void AttackButtonHandler3()
+	{
+		if (GameState != State.PLAYER_TURN)
+			return;
+
+		Debug.Log("E");
 	}
 
 }

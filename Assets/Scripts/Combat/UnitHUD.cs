@@ -19,8 +19,11 @@ public class UnitHUD : MonoBehaviour
         HealthText.text = "HP: " + _player.HP;
         HealthSlider.maxValue = _player.HP;
         HealthSlider.value = _player.HP;
-        bottomUI.SetSliderMax(_player.HP);
-        bottomUI.SetSliderValue(_player.HP);
+        bottomUI.SetHealthMax(_player.HP);
+        bottomUI.SetHealthValue(_player.HP);
+        bottomUI.SetStressMax(_player.MaxStress);
+        bottomUI.SetStressValue(_player.Stress);
+        bottomUI.SetButtonText(_player);
    }
 
    public void SetEnemyData(Enemy enemy){
@@ -34,7 +37,8 @@ public class UnitHUD : MonoBehaviour
         if(isPlayer){
             HealthSlider.value = _player.HP;
             HealthText.text = "HP: " + _player.HP;
-            bottomUI.SetSliderValue(_player.HP);
+            bottomUI.SetHealthValue(_player.HP);
+            bottomUI.SetStressValue(_player.Stress);
         }
             
         else{

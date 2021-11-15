@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   moveName: Attack
+  level: 0
   damage: 20
+  stressDamage: 30
+  heal: 0
+  stressHeal: 0

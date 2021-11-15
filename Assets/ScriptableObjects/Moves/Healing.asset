@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2e2de0098c373544907cdbedb393ea9, type: 3}
-  m_Name: Attack2
+  m_Name: Healing
   m_EditorClassIdentifier: 
-  moveName: Attack 2
+  moveName: Healing
   level: 1
-  damage: 40
-  stressDamage: 50
-  heal: 0
+  damage: 0
+  stressDamage: 0
+  heal: 50
   stressHeal: 0
