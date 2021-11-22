@@ -10,21 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1179ffa846c3e041b82cebe590ed056, type: 3}
-  m_Name: Player
+  m_Name: Monyet
   m_EditorClassIdentifier: 
-  name: Player
-  sprite: {fileID: -3303779423006393323, guid: e07e58713a55ee2498aa38dc910d33d3, type: 3}
+  name: Monyet
+  sprite: {fileID: 21300000, guid: 9e6cfcece1945e444abe9263c4b5f882, type: 3}
   maxHp: 100
-  maxStress: 100
-  attack: 100
+  maxStress: 0
+  attack: 0
   defense: 0
   oneMove:
     moveBase: {fileID: 0}
     level: 0
-  moves:
-  - moveBase: {fileID: 11400000, guid: 257081e16fbd0a84387a2e2d3c03a1d0, type: 2}
-    level: 1
-  - moveBase: {fileID: 11400000, guid: 90f22f9066d572d4cb27c88e112986ea, type: 2}
-    level: 1
-  - moveBase: {fileID: 11400000, guid: b3d9d13eac7a43844b26c3c14f8819b9, type: 2}
-    level: 1
+  moves: []

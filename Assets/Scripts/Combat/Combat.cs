@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-enum State {START,PLAYER_TURN,ENEMY_TURN,END}
+enum State {START,PLAYER_TURN,ENEMY_TURN,END,LOST}
 
 public class Combat : MonoBehaviour
 {   
@@ -22,6 +22,8 @@ public class Combat : MonoBehaviour
 	[SerializeField] UnitHUD enemyHUD;
 	[SerializeField] GameController gameController;
 	[SerializeField] GameObject exploreEnemy;
+	[SerializeField] GameObject explorePlayer;
+	[SerializeField] PlayerWalk playerWalk;
     
 
 	public void StartBattle(){
@@ -30,9 +32,14 @@ public class Combat : MonoBehaviour
         StartCoroutine(BattleStart());
 	}
 
-    IEnumerator BattleStart(){
+	private void Start() {
 		playerUnit.Setup();
 		playerHUD.SetPlayerData(playerUnit.Player);
+	}
+
+
+    IEnumerator BattleStart(){
+		
 		enemyUnit.Setup();
 		enemyHUD.SetEnemyData(enemyUnit.Enemy);
        
@@ -41,23 +48,29 @@ public class Combat : MonoBehaviour
         GameState = State.PLAYER_TURN;
         
     }
-   
-    void PlayerTurn()
-    {
-        Debug.Log("Player turn");
-    }
-	
+
 	public void SetExploreEnemy(GameObject e){
 		exploreEnemy = e;
 	}
 
     void EndBattle(){
-        GameState = State.END;
-		gameStatusText.text = "Battle Ends!";
-		gameStatusUI.SetActive(true);
-		exploreEnemy.SetActive(false);
-		gameController.ChangeState();
-		gameController.EnableExplore();
+       if(GameState == State.END){
+		   	gameStatusText.text = "Battle Ends!";
+			gameStatusUI.SetActive(true);
+			exploreEnemy.SetActive(false);
+			playerWalk.EnemyDown();
+			gameController.ChangeState(true);
+			gameController.EnableExplore();
+	   }
+	   else if(GameState == State.LOST){
+		   gameStatusText.text = "YOU LOSE!";
+		   gameStatusUI.SetActive(true);
+		   explorePlayer.SetActive(false);
+		   gameController.ChangeState(false);
+		   gameController.EnableExplore();
+
+	   }
+		
     }
 
     IEnumerator PlayerMove0()
@@ -72,6 +85,7 @@ public class Combat : MonoBehaviour
 
 		if(enemyUnit.Enemy.HP <= 0)
 		{
+			GameState = State.END;
 			EndBattle();
 			Debug.Log("ENEMY DED");
 		} else
@@ -145,25 +159,16 @@ public class Combat : MonoBehaviour
 		yield return new WaitForSeconds(1f);
 		gameStatusUI.SetActive(false);
 		GameState = State.PLAYER_TURN;
-		PlayerTurn();
-
-		if(playerUnit.Player.HP <= 0 || enemyUnit.Enemy.HP <= 0)
+	
+		if(playerUnit.Player.HP <= 0 )
 		{
-			GameState = State.END;
+			GameState = State.LOST;
 			EndBattle();
 		} else
 		{
 			GameState = State.PLAYER_TURN;
-			PlayerTurn();
 		}
 
-	}
-
-
-	public void EnemyStressAttack(){
-		// playerScript.takeStress(10);
-		gameStatusUI.SetActive(true);
-		gameStatusText.text = "Stress Attack";
 	}
 
     public void AttackButtonHandler0()

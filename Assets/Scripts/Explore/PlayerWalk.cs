@@ -1,21 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerWalk : MonoBehaviour
 {
+    public int enemyCount;
     private float moveSpeed = 8f;
     private float dirX,dirY;
     [SerializeField] GameController gameController;
     [SerializeField] Combat combat;
     [SerializeField] GameObject GameWinUI;
+    [SerializeField] GameObject GameLoseUI;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject restart;
+    [SerializeField] GameObject next;
+    [SerializeField] Text enemyLeftText;
+    [SerializeField] Camera cam;
+
+    bool canWalk = true;
+    
 
     // Update is called once per frame
     void Update()
     {
-        Walk();
+        if(canWalk) Walk();
+        
+        enemyLeftText.text = "Enemy left: "+enemyCount;
+        cam.transform.position = new Vector3(transform.position.x,transform.position.y,cam.transform.position.z);
     }
 
     void Walk(){
@@ -33,27 +47,52 @@ public class PlayerWalk : MonoBehaviour
         }
     }
 
+    public void EnemyDown(){
+        enemyCount -= 1;
+        if(enemyCount == 0){
+            gameWin();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.CompareTag("Enemy")){
             collision.GetComponent<ExploreEnemy>().ToBattle();
             combat.SetExploreEnemy(collision.gameObject);
             TriggerCombat();
-            
-        }
-        if(collision.CompareTag("Win")){
-            gameWin();
         }
     }
 
     void TriggerCombat(){
-        gameController.ChangeState();
+        gameController.ChangeState(true);
         gameController.DisableExplore();
         combat.StartBattle();
     }
 
-    void gameWin(){
+    public void gameWin(){
+        canWalk = false;
         GameWinUI.SetActive(true);
-        this.enabled = false;
+        mainMenu.SetActive(true);
+        next.SetActive(true);
+    }
+
+    public void gameLost(){   
+        canWalk = false;
+        GameLoseUI.SetActive(true);
+        mainMenu.SetActive(true);
+        restart.SetActive(true);   
     }
        
+    public void Tutorial(){
+        SceneManager.LoadScene("Tutorial");
+    }
+    public void Asrama(){
+        SceneManager.LoadScene("Asrama");
+    }
+    public void CCR(){
+        SceneManager.LoadScene("Tutorial");
+    }
+    public void MainMenu(){
+        SceneManager.LoadScene("MainMenu");
+    }
+    
 }
