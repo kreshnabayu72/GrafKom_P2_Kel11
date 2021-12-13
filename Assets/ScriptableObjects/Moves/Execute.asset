@@ -15,3 +15,6 @@ MonoBehaviour:
   moveName: EXECUTE
   level: 1
   damage: 100
+  stressDamage: 0
+  heal: 0
+  stressHeal: 0

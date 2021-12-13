@@ -12,9 +12,10 @@ public class GameController : MonoBehaviour
     public Camera ExploreCamera;
     public GameState Status;
 
-    public void ChangeState(){
+    public void ChangeState(bool win){
         if(Status == GameState.COMBAT){
             Status = GameState.EXPLORE;
+            if(!win) playerWalk.gameLost();
         }
         else if(Status == GameState.EXPLORE){
             Status = GameState.COMBAT;
@@ -44,4 +45,5 @@ public class GameController : MonoBehaviour
     public void EnableCombat(){
         combat.enabled = true;
     }
+    
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExploreEnemy : MonoBehaviour
 {
@@ -15,5 +16,6 @@ public class ExploreEnemy : MonoBehaviour
     public void ToBattle(){
         combatEnemy.SetUnit(_base);
     }
+    
     
 }
